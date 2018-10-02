@@ -148,7 +148,7 @@ video.addEventListener("canplaythrough",function(){
 
 });
 
-video.src = "https://github.com/comic-quest/flash/blob/gh-pages/flash.mp4?raw=true";
+video.src = "https://github.com/comic-flash/flash2/blob/master/flash.mp4?raw=true";
 
 
 var sword1 = {degrees:0}
