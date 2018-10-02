@@ -1,0 +1,23 @@
+body{
+    margin:0px;
+position:relative;
+    background-color:#eeeeee;
+}
+
+
+.video,#canvas{
+    width: 640px;
+-webkit-border-radius: 10px; 
+-moz-border-radius: 10px;
+border-radius: 10px; 
+overflow: hidden;
+
+}
+
+#canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    
+}
+
