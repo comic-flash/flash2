@@ -34,8 +34,8 @@ var reqanim;
 
 var canvas = document.getElementById("canvas");
     
-    canvas.width=640;
-    canvas.height=480;
+    canvas.width=650;
+    canvas.height=450;
 
 var ctx = canvas.getContext("2d");
 
@@ -56,6 +56,21 @@ ctx.font='50px Arial';
 ctx.fillStyle="white";
 
 var startagain = new Image();
+
+var credits={
+    x:225,
+    y:175,
+    width:200,
+    height:100
+    
+    
+}
+var goback={
+    x:5,
+    y:canvas.height-60,
+    width:100,
+    height:50
+}
     
     startagain.src = "https://www.dropbox.com/s/mspqrx6jcmusjp1/startagain.png?raw=1"
 
@@ -71,8 +86,80 @@ function loadimg(){
            
 }
 
-video.addEventListener("canplaythrough",function(){
+function onend(){
     
+    
+               
+               ctx.fillStyle="black"
+               ctx.fillRect(0,0,canvas.width,canvas.height)
+               
+               ctx.drawImage(startagain,canvas.width-40,canvas.height-35)
+               ctx.lineWidth=2
+               ctx.strokeStyle="white"
+               ctx.beginPath();
+               ctx.rect(credits.x,credits.y,credits.width,credits.height)
+                   ctx.stroke()
+                    
+               ctx.fillStyle="white";
+               ctx.font="50px Arial"
+               ctx.fillText("Créditos.",credits.x,credits.y+60)
+               
+              
+               
+               canvas.onclick=function(e){
+                  
+                   
+                   
+                   if(e.pageX>=credits.x&&e.pageX<credits.x+credits.width&&e.pageY>credits.y&&e.pageY<credits.y+credits.height){
+                      
+                      ctx.clearRect(0,0,canvas.width,canvas.height);
+                       
+                       ctx.lineWidth=2
+               ctx.strokeStyle="white"
+               ctx.beginPath();
+               ctx.rect(5,canvas.height-60,100,50)
+                   ctx.stroke()
+                       ctx.font="30px arial"
+                       ctx.fillText("Volver",8,canvas.height-25);
+                       
+                       ctx.fillText("Director: Erizo14",5,40);
+                      
+                       ctx.fillText("Músico: Zinc",5,80);
+                       ctx.fillText("Artista: Kimsa",5,120)
+                       ctx.fillText("Programador: Helius Universe",5,160)
+                       
+                       canvas.onclick=function(e){
+                           
+                            if(e.pageX>=goback.x&&e.pageX<goback.x+goback.width&&e.pageY>goback.y&&e.pageY<goback.y+goback.height){
+                                onend();
+                       }
+                       
+                      }
+                   
+                   console.log(e)
+                   
+                
+               
+               //ctx.clearRect(0,0,canvas.width,canvas.height)
+               
+                   
+                   
+               }else if(e.pageX>=canvas.width-40&&e.pageX<canvas.width&&e.pageY>canvas.height-35&&e.pageY<canvas.height){
+                   ctx.clearRect(0,0,canvas.width,canvas.height);
+                         canvas.onclick=function(){}
+                   video.play();
+                   
+                        
+                        }
+               
+           
+    
+}
+               
+}
+
+video.oncanplaythrough=function(){
+    video.oncanplaythrough=function(){}
      setTimeout(function(){
      showLoading=false;
      showStart=true;
@@ -98,34 +185,14 @@ video.addEventListener("canplaythrough",function(){
            canvas.onclick=function(){};
            showStart=false;
            isloaded=true;
-          
+          console.log("this?")
            cancelAnimationFrame(reqanim)
            
            ctx.clearRect(0,0,canvas.width,canvas.height)
            
            video.play();
            
-           video.onended=function(){
-               
-               
-               
-               
-               ctx.drawImage(startagain,canvas.width-40,canvas.height-35)
-               
-               
-               canvas.onclick=function(){
-                   canvas.onclick=function(){}
-                   video.play();
-                   
-                
-               
-               ctx.clearRect(0,0,canvas.width,canvas.height)
-               
-                   
-                   
-               }
-               
-           }
+           video.onended=onend
            
            
        }
@@ -146,9 +213,9 @@ video.addEventListener("canplaythrough",function(){
   
      
 
-});
+}
 
-video.src = "https://github.com/comic-flash/flash2/blob/master/flash.mp4?raw=true";
+video.src = "https://github.com/comic-flash/flash2/blob/master/flash2.mp4?raw=true";
 
 
 var sword1 = {degrees:0}
