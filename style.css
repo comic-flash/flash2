@@ -1,11 +1,11 @@
 body{
     margin:0px;
 position:relative;
-    background-color:#eeeeee;
+    background-color:transparent;
 }
 
 
-.video,#canvas{
+.video,#canvas,#canvas2{
     width: 650px;
     height:450px;
 -webkit-border-radius: 10px; 
@@ -19,6 +19,25 @@ overflow: hidden;
     position:absolute;
     top:0;
     left:0;
+   
+}
+
+#container{
+    position:relative
+        margin:0px;
+    padding:0px;
+
     
 }
 
+#percent{
+    font-size:40px;
+    position:absolute;
+        top:60px;
+    width:650px;
+    left:0px;
+    text-align:center;
+    color:white;
+    
+    
+}

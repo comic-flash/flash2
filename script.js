@@ -30,6 +30,8 @@ window.cancelAnimationFrame = window.cancelAnimationFrame ||
 
 var reqanim;
 
+var percent = document.getElementById("percent")
+
    var video = document.getElementById("flash");
 
 var canvas = document.getElementById("canvas");
@@ -160,15 +162,13 @@ function onend(){
 
 video.oncanplaythrough=function(){
     video.oncanplaythrough=function(){}
-     setTimeout(function(){
+     
      showLoading=false;
      showStart=true;
-     if(window.tween1){
-         
-         
-         //tween1.kill();
-         
-     }
+    
+         TweenMax.pauseAll();
+         TweenMax.killAll();
+     
     
     
     if(!video.paused){
@@ -185,6 +185,7 @@ video.oncanplaythrough=function(){
            canvas.onclick=function(){};
            showStart=false;
            isloaded=true;
+           percent.innerHTML="";
        
            cancelAnimationFrame(reqanim)
            
@@ -202,7 +203,7 @@ video.oncanplaythrough=function(){
       
 
 
-     },3000)
+    
 
     
      
@@ -219,17 +220,17 @@ r.onload = function() {
     video.src = URL.createObjectURL(r.response);
    
 };
-if (video.canPlayType('video/mp4;codecs="avc1.42E01E, mp4a.40.2"')) {
+
     r.open("GET", "https://comic-flash.github.io/flash2/flash2.mp4?raw=1");
     r.responseType = "blob";
 r.send();
+r.onprogress = function(e){
+    
+ percent.innerHTML = ((e.loaded/e.total)*100).toFixed()+"%";
     
 }
-else {
-    
-    video.src = "https://github.com/comic-flash/flash2/blob/master/flash2.mp4?raw=true";
-    
-}
+
+
 
 
 
