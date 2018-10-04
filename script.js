@@ -214,8 +214,25 @@ video.oncanplaythrough=function(){
      
 
 }
+var r = new XMLHttpRequest();
+r.onload = function() {
+    video.src = URL.createObjectURL(r.response);
+   
+};
+if (video.canPlayType('video/mp4;codecs="avc1.42E01E, mp4a.40.2"')) {
+    r.open("GET", "https://comic-flash.github.io/flash2/flash2.mp4?raw=1");
+    r.responseType = "blob";
+r.send();
+    
+}
+else {
+    
+    video.src = "https://github.com/comic-flash/flash2/blob/master/flash2.mp4?raw=true";
+    
+}
 
-video.src = "https://github.com/comic-flash/flash2/blob/master/flash2.mp4?raw=true";
+
+
 
 
 var sword1 = {degrees:0}
