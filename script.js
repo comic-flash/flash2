@@ -185,7 +185,7 @@ video.oncanplaythrough=function(){
            canvas.onclick=function(){};
            showStart=false;
            isloaded=true;
-          console.log("this?")
+       
            cancelAnimationFrame(reqanim)
            
            ctx.clearRect(0,0,canvas.width,canvas.height)
