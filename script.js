@@ -10,7 +10,7 @@
 
 //https://www.dropbox.com/s/bec6v06csrxvygr/index.html?raw=1
 
-//<iframe src="comic-quest.github.io/flash" allowtransparency="true" allow="autoplay" width=640 height=480 frameBorder="0">
+//<iframe src="comic-quest.github.io/flash" allowtransparency="true" allow="autoplay" width=640 height=480 frameBorder="0" scrolling="no">
 
 //https://raw.githack.com/comic-quest/flash/gh-pages/script.js
 
