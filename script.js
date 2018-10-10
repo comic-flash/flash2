@@ -215,8 +215,10 @@ video.oncanplaythrough=function(){
      
 
 }
-var urls = ["https://comic-flash.github.io/flash2/flash2.mp4?raw=1","https://r4---sn-h5q7dnee.c.drive.google.com/videoplayback?id=1364533dbb6758f1&itag=18&source=webdrive&requiressl=yes&mm=30&mn=sn-h5q7dnee&ms=nxu&mv=m&pl=22&sc=yes&ttl=transient&ei=DWO2W5CrIcnkqgXqlrOYAQ&susc=dr&driveid=1aj8wNpBlxWY-bbQUD_aMhdSKH0pBt9Nw&app=texmex&mime=video/mp4&dur=110.457&lmt=1538679445005968&mt=1538679459&ip=87.221.43.4&ipbits=0&expire=1538693965&cp=QVNIWkdfUllURlhOOnZIV1hZUzk5UUxZ&sparams=ip,ipbits,expire,id,itag,source,requiressl,mm,mn,ms,mv,pl,sc,ttl,ei,susc,driveid,app,mime,dur,lmt,cp&signature=D26C0A306DC2927F19F9171EE840E1897DA6E05FEC40FA66CE7316A072617CCD.D386A3D51F0C3F9EAD1B6F0433ED1F1999AE727CEC1FF17F0D7E5C6A1F4354CF&key=us0&cpn=qE9WpvbDFCgloci8&c=WEB_EMBEDDED_PLAYER&cver=20181003"]
-var fail=true;
+var urls = ["https://comic-flash.github.io/flash2/flash2.mp4?raw=1","https://comicflash.sirv.com/Images/flash2.mp4","http://ltseonev-direct.sirv.com/Images/flash.mp4"]
+
+var fail=false;
+
 
 function recursiveRequest(i){
     fail=false;
@@ -232,6 +234,7 @@ r.onload = function() {
 };
 console.log(urls[i])
     r.open("GET", urls[i]);
+    r.timeout=5000
     r.responseType = "blob";
 r.send();
 
@@ -251,9 +254,9 @@ r.onprogress = function(e){
     
 }
 r.onabort = function(){
-console.log("abort")
     if(!fail){
        recursiveRequest(i+1);
+        fail=true
        
        }
     
@@ -261,10 +264,19 @@ console.log("abort")
 r.onerror=function(){
 if(!fail){
    recursiveRequest(i+1);
+    fail=true
    
    }
-    
 }
+r.ontimeout=function(){
+    if(!fail){
+   recursiveRequest(i+1);
+    fail=true
+   
+   }
+}
+    
+
     
     
 }
