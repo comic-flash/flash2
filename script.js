@@ -215,7 +215,7 @@ video.oncanplaythrough=function(){
      
 
 }
-var urls = ["https://comic-flash.github.io/flash2/flash2.mp4?raw=1","https://comicflash.sirv.com/Images/flash2.mp4","http://ltseonev-direct.sirv.com/Images/flash.mp4"]
+var urls = ["https://comic-flash.github.io/flash2/flash2.mp4?raw=1","https://comic-flash.github.io/flash-host/flash2.mp4?raw=1","https://comicflash.sirv.com/Images/flash2.mp4","http://ltseonev-direct.sirv.com/Images/flash.mp4"]
 
 var fail=false;
 
@@ -234,7 +234,6 @@ r.onload = function() {
 };
 console.log(urls[i])
     r.open("GET", urls[i]);
-    r.timeout=5000
     r.responseType = "blob";
 r.send();
 
@@ -254,6 +253,7 @@ r.onprogress = function(e){
     
 }
 r.onabort = function(){
+    console.log("?")
     if(!fail){
        recursiveRequest(i+1);
         fail=true
@@ -262,6 +262,7 @@ r.onabort = function(){
     
 }
 r.onerror=function(){
+    console.log(".?")
 if(!fail){
    recursiveRequest(i+1);
     fail=true
@@ -269,6 +270,7 @@ if(!fail){
    }
 }
 r.ontimeout=function(){
+    console.log("..?")
     if(!fail){
    recursiveRequest(i+1);
     fail=true
